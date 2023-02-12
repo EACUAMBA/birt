@@ -10,7 +10,11 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
     id 'maven-publish'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
+
+group = 'com.eacuamba'
+version = '1.0.02'
 
 publishing {
     repositories {
@@ -26,6 +30,9 @@ publishing {
     publications {
         gpr(MavenPublication) {
             from(components.java)
+            groupId = 'com.eacuamba'
+            artifactId = 'birt'
+            version = '4.8'
         }
     }
 }
@@ -42,4 +49,8 @@ dependencies {
 application {
     // Define the main class for the application.
     mainClass = 'birt.App'
+}
+
+tasks.shadowJar {
+    archiveFileName = "birt-"
 }
